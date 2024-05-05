@@ -62,3 +62,20 @@ Dan seperti gambar berikut:
 ![image](https://github.com/fathonidf-Adpro/tutorial-10-broadcast-chat/assets/105644250/096c4b64-f1df-4e9a-a57c-e058dda85148)
 
 Error terjadi karena klien mencoba terhubung ke port 8080 sedangkan server yang dijalankan mendengarkan pada port 2020, sehingga tidak ada server yang aktif di port yang dicoba klien untuk terhubung.
+
+>Experiment 2.3: Small changes, add IP and Port
+
+![image](https://github.com/fathonidf-Adpro/tutorial-10-broadcast-chat/assets/105644250/66bcee4a-4b6a-4719-991c-603f36dcdc12)
+
+Terlihat dengan portnya kembali disamakan menjadi `8080` maka program berhasil berjalan dengan 3 client disertakan asal IP dan Portnya masing-masing. Hal ini ubah pada kode di `server.rs` menjadi berikut:
+
+```rust
+bcast_tx.send(format!("{addr} : {text}"))?;
+```
+Yang dimana `addr` merupakan SocketAddress yang menyimpan IP dan Port masing-masing client yang aktif. Lalu pada `client.rs` dimodifikasi hasil print sebagai berikut:
+
+```rust
+println!("Dafton's PC - From server: {}", text);
+```
+
+Alhasil text yang dikirim akan di format dengan menampilkan IP dan Port beserta text-nya yang ditulis.
